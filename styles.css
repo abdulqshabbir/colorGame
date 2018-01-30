@@ -1,0 +1,50 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #232323;
+}
+
+h1 {
+  margin: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+#title {
+  text-align: center;
+  background: steelblue;
+  color:white;
+  font-weight: 100;
+}
+
+#strip {
+  background-color: white;
+}
+
+.selected {
+  background-color: steelblue;
+}
+
+#squareContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.square {
+  width: 30%;
+  background-color: steelblue;
+  padding-bottom: 30%;
+  margin: 1.66%;
+  display: inline-block;
+  border-radius: 15%;
+  float: left;
+}
