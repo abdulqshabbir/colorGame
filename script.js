@@ -11,6 +11,7 @@ const myColorToDisplay = document.getElementById('pickedColor');
 let colors = [];
 let myColor = '';
 let numberOfSquares = 6;
+let mode = 'hard';
 
 //-------------------- On page Load...---------------------------//
 squares.forEach(function(square) {
@@ -28,7 +29,7 @@ hardButton.classList.add('selected');
 //------------Main Game Logic -----------//
 playButton.addEventListener('click', function() {
   colors = []; //reset colors array
-  title.style.backgroundColor = "steelblue"; //
+  title.style.backgroundColor = "steelblue"; //set background color to blue
 
   squares.forEach(function(square) {
     let randomColor = generateRandomColor(); //generate random color
@@ -36,12 +37,6 @@ playButton.addEventListener('click', function() {
     colors.push(randomColor); //save result
   });
   pickColor(numberOfSquares); //choose a color
-  if(hardButton.classList.contains('selected')) {
-    hardButton.style.backgroundColor = 'steelblue';
-  }
-  if(easyButton.classList.contains('selected')) {
-    easyButton.style.backgroundColor = 'steelblue';
-  }
 });
 
 squares.forEach(function(square) {
@@ -51,13 +46,62 @@ squares.forEach(function(square) {
 });
 
 easyButton.addEventListener('click', function() {
-  easyButton.classList.add('selected');
-  hardButton.classList.remove('selected');
+  mode = 'easy';
+  console.log('easy mode!');
+  numberOfSquares = 3;  //pick color from first three squares
+
+  //hide last three squares
+  squares[5].style.display = 'none';
+  squares[4].style.display = 'none';
+  squares[3].style.display = 'none';
+
+  //style selected mode button and reverse styling on other button
+  easyButton.style.backgroundColor = 'steelblue';
+  easyButton.style.color = 'white';
+  hardButton.style.backgroundColor = 'white';
+  hardButton.style.color = 'steelblue';
+
+  //style title
+  title.style.backgroundColor = "steelblue";
+
+  colors = []; //reset colors array
+
+  squares.forEach(function(square) {
+    let randomColor = generateRandomColor(); //generate random color
+    square.style.backgroundColor = randomColor; //color each square
+    colors.push(randomColor); //save result
+  });
+  pickColor(numberOfSquares); //choose a color ONLY from first three
+
 });
 
 hardButton.addEventListener('click', function() {
-  hardButton.classList.add('selected');
-  easyButton.classList.remove('selected');
+  mode = 'hard';
+  console.log('hard mode!');
+  numberOfSquares = 6;  //pick color from first three squares
+
+  //hide last three squares
+  squares[5].style.display = 'inline-block';
+  squares[4].style.display = 'inline-block';
+  squares[3].style.display = 'inline-block';
+
+  //style selected mode button and reverse styling on other button
+  easyButton.style.backgroundColor = 'white';
+  easyButton.style.color = 'steelblue';
+  hardButton.style.backgroundColor = 'steelblue';
+  hardButton.style.color = 'white';
+
+  //style title
+  title.style.backgroundColor = "steelblue";
+
+  colors = []; //reset colors array
+
+  squares.forEach(function(square) {
+    let randomColor = generateRandomColor(); //generate random color
+    square.style.backgroundColor = randomColor; //color each square
+    colors.push(randomColor); //save result
+  });
+  pickColor(numberOfSquares); //choose a color ONLY from first three
 });
 
 //-------------------- Helper functions --------------------------//
@@ -66,12 +110,6 @@ function doesColorMatch(squareClicked) {
   let colorOfClickedButton = squareClicked.style.backgroundColor;
   if(colorOfClickedButton === myColor) {
     console.log('you won!');
-    if(hardButton.classList.contains('selected')) {
-      hardButton.style.backgroundColor = myColor;
-    }
-    if(easyButton.classList.contains('selected')) {
-      easyButton.style.backgroundColor = myColor;
-    }
     squares.forEach(function(square){
       square.style.backgroundColor = myColor;
       title.style.backgroundColor = myColor;
