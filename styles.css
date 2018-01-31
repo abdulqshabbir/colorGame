@@ -17,21 +17,49 @@ button {
   margin: 0;
   padding: 0;
   border: none;
+  height: 100%;
+  color: steelblue;
+  font-weight: bold;
 }
 
 #title {
   text-align: center;
   background: steelblue;
   color:white;
-  font-weight: 100;
+  font-family: 'Avenir', 'Montserrat';
+  font-weight: 300;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  line-height: 1.2;
+  padding: 20px 0;
+}
+
+#pickedColor {
+  font-size: 60px;
 }
 
 #strip {
+  display: block;
   background-color: white;
+  margin: 0 auto;
+}
+
+
+button {
+  font-family: 'Avenir', 'Montserrat';
+  font-size: 20px;
+  text-align: center;
+  outline: none;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  padding: 0 30px;
 }
 
 .selected {
   background-color: steelblue;
+  border: none;
+  outline: none;
+  color: white;
 }
 
 #squareContainer {
@@ -47,4 +75,15 @@ button {
   display: inline-block;
   border-radius: 15%;
   float: left;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: steelblue;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+#squareContainer {
+  padding-top: 30px;
 }
