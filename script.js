@@ -30,7 +30,15 @@ hardButton.classList.add('selected');
 playButton.addEventListener('click', function() {
   colors = []; //reset colors array
   title.style.backgroundColor = "steelblue"; //set background color to blue
+  playButton.textContent = 'new colors';
 
+  if(mode === 'easy') {
+    easyButton.style.backgroundColor = 'steelblue';
+  }
+
+  if(mode === 'hard') {
+    hardButton.style.backgroundColor = 'steelblue';
+  }
   squares.forEach(function(square) {
     let randomColor = generateRandomColor(); //generate random color
     square.style.backgroundColor = randomColor; //color each square
@@ -110,13 +118,24 @@ function doesColorMatch(squareClicked) {
   let colorOfClickedButton = squareClicked.style.backgroundColor;
   if(colorOfClickedButton === myColor) {
     console.log('you won!');
+    playButton.textContent = 'play again?';
     squares.forEach(function(square){
       square.style.backgroundColor = myColor;
       title.style.backgroundColor = myColor;
     });
+    styleModeButtons(myColor);
   }
   else {
     squareClicked.style.backgroundColor = "#232323";
+  }
+}
+
+function styleModeButtons(myColor) {
+  if(mode === 'hard') {
+    hardButton.style.backgroundColor = myColor;
+  }
+  else if (mode === 'easy') {
+    easyButton.style.backgroundColor = myColor;
   }
 }
 
